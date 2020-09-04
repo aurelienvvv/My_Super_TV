@@ -1,0 +1,118 @@
+// COLORS //
+
+$darkblue: #2c3e50;
+$darkerblue: #1c1d31;
+
+// Theme Blue
+$blue: #3690d1;
+$lightblue: #86c1eb;
+$green: #2cdba1;
+
+// Theme violet
+$purpleblue: #655dff;
+$lightpurlple: #928aff;
+$purple: #ff19ff80;
+
+// Theme orange
+$pink: #f962db;
+$orange: #F7B341;
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: $darkblue;
+  background: $darkerblue;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.slide-enter,
+.slide-leave-to {
+  opacity: 0;
+}
+
+.btn {
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+  border: 2px solid $purpleblue;
+  padding: 20px 40px;
+  text-transform: uppercase;
+  color: white;
+  background: rgba(white, 0);
+  transition: 0.3s ease;
+  border-radius: 30px;
+  font-weight: 700;
+  overflow: hidden;
+
+  span {
+    display: inline-block;
+    transform: translateY(0);
+    transition: 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  }
+
+  &:after {
+    content: "COMMENCER";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    top: -20px;
+    transition: 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  }
+
+  &:hover {
+    border: 2px solid $lightpurlple;
+    box-shadow: 0 0 15px $purple;
+
+    span {
+      transform: translateY(50px);
+    }
+
+    &:after {
+      top: 50%;
+    }
+  }
+
+  .-theme-blue & {
+    border-color: $blue;
+
+    &:hover {
+      border: 2px solid #86c1eb;
+      box-shadow: 0 0 15px rgba($green, 0.5);
+    }
+  }
+
+  .-theme-orange & {
+    border-color: $orange;
+
+    &:hover {
+      border: 2px solid #ff9ac7;
+      box-shadow: 0 0 15px rgba($pink, 0.8);
+    }
+  }
+
+  &.-theme-white {
+    background: rgb(222, 222, 222);
+    color: #1c1d31;
+    border: 0;
+    box-shadow: 0;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}

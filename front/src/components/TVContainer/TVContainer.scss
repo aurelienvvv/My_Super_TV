@@ -1,0 +1,335 @@
+@import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
+
+.wrapper-tv {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  background-color: black;
+  overflow: hidden;
+
+  .btn-info-channel {
+    cursor: pointer !important;
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: $darkerblue;
+    z-index: 10000;
+    background-image: url('../../assets/hello.png');
+    background-size: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: .3s ease;
+
+    &:hover {
+      animation: hello-anim 1s infinite ;
+    }
+
+    @keyframes hello-anim {
+      0% {
+        transform: rotate(0);
+      }
+
+      50% {
+        transform: rotate(40deg);
+      }
+
+      100% {
+        transform: rotate(0);
+      }
+    }
+  }
+
+  .infos-channel {
+    position: absolute;
+    left: -40%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    background-color: $darkerblue;
+    width: 300px;
+    max-height: 500px;
+    padding: 30px;
+    color: white;
+    border-radius: 20px;
+    transition: .5s ease-in-out;
+    opacity: 0;
+
+    &.-visible {
+      left: 10px;
+      opacity: 1;
+    }
+
+    .title {
+      font-family: 'Pirata One', cursive;
+      font-size: 50px;
+    }
+
+    .pseudo {
+      font-style: italic;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+  }
+
+  .left-part {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50%;
+    height: 90%;
+    z-index: 100;
+    opacity: .1;
+
+    a {
+      cursor: none !important;
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+    }
+  }
+  .right-part {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 50%;
+    height: 90%;
+    z-index: 100;
+    opacity: .1;
+
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      cursor: none !important;
+      background-color: transparent;
+    }
+  }
+
+    .btn-prev {
+      cursor: none !important;
+      pointer-events: none;
+      border: 0;
+      background-color: #2c3e50;;
+      margin-right: 20px;
+      font-size: 20px;
+      padding: 20px;
+      height: 20px;
+      width: 40px;
+      mask-repeat: no-repeat;
+      mask-size: contain;
+      mask-position: center;
+      transition: .5 ease;
+      position: absolute;
+      mask-image: url(../../assets/next.svg);
+      transform: scaleX(-1);
+      z-index: 100;
+
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 50px;
+        height: 50px;
+        border-color: white;
+      }
+    }
+
+  .controls-wrapper {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    bottom: 30px;
+    left: 30px;
+    z-index: 1000000;
+
+    button {
+      cursor: pointer;
+      border: 0;
+      background-color: white;
+      margin-right: 20px;
+      font-size: 20px;
+      height: 20px;
+      width: 40px;
+      mask-repeat: no-repeat;
+      mask-size: contain;
+      mask-position: center;
+      opacity: .3;
+      transition: .5 ease;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    .btn-play {
+      mask-image: url(../../assets/play.svg);
+    }
+
+    .btn-pause {
+      mask-image: url(../../assets/pause.svg);
+    }
+
+    .btn-unmute {
+      mask-image: url(../../assets/unmute.svg);
+      position: fixed;
+      top: 20px;
+      left: 20px;
+    }
+
+    .btn-mute {
+      mask-image: url(../../assets/mute.svg);
+      position: fixed;
+      top: 20px;
+      left: 20px;
+    }
+  }
+
+  .marquee-text {
+    position: fixed;
+    font-size: 150px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    
+    .marquee-text-text {
+      font-family: 'Pirata One', cursive;
+      
+      .spacer {
+        margin-right: 30px;
+      }
+    }
+    
+    @media screen and (max-width: 800px) {
+      z-index: 1000;
+    }
+  }
+
+  .video-container {
+    position: relative;
+    height: 100%;
+    // width: 100%;
+    width: 700px;
+    margin: 0 auto;
+    overflow: hidden;
+    z-index: 10;
+
+    @media screen and (max-width: 800px) {
+      height: 100%;
+      width: 700px;
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 80px;
+      width: 100%;
+      // background-color: black;
+      opacity: 1;
+    }
+
+    .load-video {
+      position: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      background: rgb(29, 29, 29);
+      z-index: 1;
+      opacity: 0;
+      transition: .5s ease;
+
+      &.active {
+        opacity: 1;
+        transition: 0;
+
+        .title-load {
+          transform: translateY(0);
+        }
+      }
+
+      .title-load {
+        font-family: 'Pirata One', cursive;
+        color: rgb(255, 255, 255);
+        font-size: 60px;
+        text-shadow: 0 0 10px rgba(white, .3);
+        animation: opacity-load 1s infinite;
+        pointer-events: none;
+        transform: translateY(-15px);
+        transition: .5s ease;
+      }
+
+      @keyframes opacity-load {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: .5;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+    }
+
+    .plyr--video {
+      height: 100%;
+      width: 100%;
+
+      .plyr__video-embed {
+        height: 100% !important;
+      }
+    }
+
+    .plyr__controls,
+    .plyr--full-ui.plyr--video .plyr__control--overlaid {
+      display: none;
+    }
+
+    iframe {
+      transform: scale(1.6);
+      @media screen and (max-width: 800px) {
+        transform: scale(1.5);
+      }
+    }
+  }
+
+  .edit-open {
+    cursor: pointer;
+    position: absolute;
+    top: 60px;
+    left: 10px;
+    z-index: 100;
+    border: 1px solid white;
+    background-color: transparent;
+    color: white;
+    padding: 5px 20px;
+  }
+
+  .edit-music {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    left: 50%;
+    width: 50%;
+    transform: translate(-50%, 0);
+    z-index: 10000;
+
+    background-color: white;
+    padding: 50px;
+  }
+}

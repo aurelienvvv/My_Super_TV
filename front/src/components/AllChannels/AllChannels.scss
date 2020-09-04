@@ -1,0 +1,36 @@
+.all-channels {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 100px;
+  min-height: 100vh;
+  max-width: 100%;
+
+  .channel {
+    width: 300px;
+    max-height: 300px;
+    margin: 15px;
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+      text-decoration: none;
+      color: rgb(218, 218, 218);
+      background: rgb(48, 48, 48);
+      border-radius: 10px;
+      font-family: "Pirata One", cursive;
+      font-size: 30px;
+      transition: .3s;
+
+      &:hover {
+        background-color: rgb(215, 215, 215);
+        box-shadow: 0 0 10px rgba($color: white, $alpha: .6);
+        color: rgb(40, 40, 40);
+      }
+    }
+  }
+}
