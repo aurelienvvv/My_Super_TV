@@ -16,15 +16,6 @@
     </div>
     <button class="btn-prev"></button>
 
-    <div class="controls-wrapper">
-      <div v-if="mute">
-        <button class="btn-mute" @click="mutePlayer"></button>
-      </div>
-      <div v-else>
-        <button class="btn-unmute" @click="mutePlayer"></button>
-      </div>
-    </div>
-
     <div>
       <div class="marquee-text">
         <marquee-text :repeat="8" :duration="5">
@@ -76,9 +67,9 @@ export default {
   methods: {
     // selectionne vidéo au hasard dans le tableau de vidéos
     selectVideo: function () {
-      let randomIndex = Math.floor(Math.random() * this.videoList.length);
-      this.video = this.videoList[randomIndex].id;
-      this.marquee = this.videoList[randomIndex].artist;
+      // let randomIndex = Math.floor(Math.random() * this.videoList.length);
+      this.video = this.videoList[0].id;
+      this.marquee = this.videoList[0].artist;
       console.log(this.video);
     },
 
@@ -88,7 +79,6 @@ export default {
       this.player.config.autopause = false;
       this.player.config.displayDuration = false;
       this.player.config.clickToPlay = false;
-      this.player.volume = 1;
     },
 
     // au click sur le bouton pause / play
@@ -219,7 +209,7 @@ export default {
           this.videoList.push(data);
         }
 
-        // selectionne une video au hasard
+        // selectionne la première vidéo
         this.selectVideo();
       });
     },
@@ -243,14 +233,18 @@ export default {
 
   mounted() {
     // récupère l'index de la video en cours
-    this.currentVideoIndex = this.videoList.findIndex((v) => v === this.video);
+    // this.currentVideoIndex = this.videoList.findIndex((v) => v === this.video);
+    this.currentVideoIndex = 0;
 
     // règle les options de plyr
     this.playerOptions();
 
     // lance le player après 3s
-    setTimeout(() => {}, 3000);
-    this.player.play();
+    setTimeout(() => {
+      console.log('mounted play video');
+      this.player.play();
+      this.player.volume = 1;
+    }, 3000);
 
     // setinterval toutes les secondes, lance la vidéo suivante quand une fini
     this.changeAtEnd();

@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     callAPI: function () {
-      axios.get("/api/").then((response) => {
+      axios.get("http://localhost:3000/api/").then((response) => {
         for (let r of response.data) {
           this.listChannel.push(r);
           r.link = `/tv/${(this.index += 1)}`;
