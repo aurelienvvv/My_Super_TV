@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const path = require('path')
 
 const app = express();
 app.use(express.json());
@@ -47,5 +48,12 @@ app.use('/api/', (req, res, next) => {
 // Choose the port and start the server
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
-  console.log(`Mixing it up on port ${PORT}`)
+console.log(`Mixing it up on port ${PORT}`)
+})
+
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, 'front/dist')))
+// Anything that doesn't match the above, send back index.html
+app.get('*', (req, res) => {
+res.sendFile(path.join(__dirname + '/front/dist/index.html'))
 })
