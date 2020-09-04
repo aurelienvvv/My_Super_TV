@@ -205,7 +205,7 @@ export default {
     },
 
     callAPI: function () {
-      axios.get("http://localhost:3000/api/").then((response) => {
+      axios.get("/api/").then((response) => {
         // ajoute le titre
         let getData = response.data[this.idChannel - 1];
         this.titleTV = getData.name;

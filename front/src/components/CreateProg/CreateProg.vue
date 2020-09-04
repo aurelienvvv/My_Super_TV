@@ -139,7 +139,7 @@ export default {
     },
 
     callAPI: function () {
-      axios.get("http://localhost:3000/api/").then((response) => {
+      axios.get("/api/").then((response) => {
         this.$router.push(`/tv/${response.data.length}`);
         window.location.reload();
       });
@@ -147,7 +147,7 @@ export default {
 
     postAPI: function () {
       axios
-        .post("http://localhost:3000/api/", {
+        .post("/api/", {
           name: this.tvName,
           list: this.progArr,
           pseudo: this.pseudoName,
