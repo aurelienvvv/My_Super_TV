@@ -15,6 +15,7 @@
       <a href="#" @click="nextVideo"></a>
     </div>
     <button class="btn-prev"></button>
+    <button class="btn-next"></button>
 
     <div>
       <div class="marquee-text">
@@ -24,6 +25,11 @@
         </marquee-text>
       </div>
     </div>
+
+    <div class="video-number">
+      {{ currentVideoIndex + 1 }} /
+      {{ videoList.length }}
+      </div>
 
     <div class="video-container">
       <div class="load-video">
@@ -110,19 +116,21 @@ export default {
     mouseOver: function (e) {
       let styleBtn = document.querySelector(".btn-prev").style;
 
-      setTimeout(() => {
+      if (window.matchMedia("(min-width: 800px)").matches) {
         styleBtn.top = `${e.clientY}px`;
         styleBtn.left = `${e.clientX}px`;
         styleBtn.transform = "scaleX(-1)";
-      }, 100);
+      }
     },
 
     mouseOverRight: function (e) {
       let styleBtn = document.querySelector(".btn-prev").style;
 
-      styleBtn.top = `${e.clientY}px`;
-      styleBtn.left = `${e.clientX}px`;
-      styleBtn.transform = "scaleX(1)";
+      if (window.matchMedia("(min-width: 800px)").matches) {
+        styleBtn.top = `${e.clientY}px`;
+        styleBtn.left = `${e.clientX}px`;
+        styleBtn.transform = "scaleX(1)";
+      }
     },
 
     // écran de chargement entre 2 vidéos
@@ -169,7 +177,7 @@ export default {
     },
 
     callAPI: function () {
-      axios.get("/api/").then((response) => {
+      axios.get("http://localhost:3000/api/").then((response) => {
         
         // ajoute le titre
         let getData = response.data[this.idChannel - 1];

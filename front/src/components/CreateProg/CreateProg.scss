@@ -1,5 +1,6 @@
 .create-tv-wrapper {
     display: flex;
+    padding: 0 20px;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -37,7 +38,6 @@
             position: absolute;
             top: 160%;
             right: 0;
-            // transform: translateX(-50%);
             width: 200px;
 
             &:after {
@@ -180,5 +180,6 @@
 
     .flex-wrapper {
         display: flex;
+        flex-wrap: wrap;
     }
 }

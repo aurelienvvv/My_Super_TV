@@ -23,7 +23,6 @@ $orange: #F7B341;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: $darkblue;
-  background: $darkerblue;
 }
 
 body,
@@ -32,7 +31,7 @@ html {
   padding: 0;
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  background: $darkerblue;
 }
 
 .slide-enter-active,

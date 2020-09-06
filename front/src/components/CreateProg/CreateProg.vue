@@ -98,6 +98,13 @@ export default {
       if (this.youtubeLink === "" || this.nameLink === "") {
         alert("Il faut remplir les 2 champs");
       } else {
+        let regex = /(?<=v=)(.*)(?=&)/;
+        let found = this.youtubeLink.match(regex);
+
+        this.youtubeLink = found[0];
+
+        console.log(this.youtubeLink);
+
         this.progArr.push({
           artist: this.nameLink,
           id: this.youtubeLink,
@@ -139,7 +146,7 @@ export default {
     },
 
     callAPI: function () {
-      axios.get("/api/").then((response) => {
+      axios.get("http://localhost:3000/api/").then((response) => {
         this.$router.push(`/tv/${response.data.length}`);
         window.location.reload();
       });
@@ -147,7 +154,7 @@ export default {
 
     postAPI: function () {
       axios
-        .post("/api/", {
+        .post("http://localhost:3000/api/", {
           name: this.tvName,
           list: this.progArr,
           pseudo: this.pseudoName,
