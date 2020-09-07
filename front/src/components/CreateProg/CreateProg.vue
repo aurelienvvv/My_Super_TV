@@ -45,18 +45,18 @@
       <div class="screen screen-three">
         <div class="flex-wrapper">
           <div class="input-wrapper">
-            <label for="artist">Nom de l'artiste</label>
+            <label for="artist">Un mot pour décrire ta vidéo {{ countProg + 1 }}</label>
             <input id="artist" v-model="nameLink" />
           </div>
 
           <div class="input-wrapper">
-            <label for="youtube-link">Entrez le lien youtube</label>
+            <label for="youtube-link">Entre le lien youtube</label>
             <input id="youtube-link" v-model="youtubeLink" />
           </div>
         </div>
 
         <div class="wrapper-ajout">
-          <div class="titles-added">{{ countProg }} titre(s) ajouté(s)</div>
+          <div class="titles-added">{{ countProg }} vidéo(s) ajouté(s)</div>
 
           <div class="wrapper-btns">
             <button class="btn -ajout" @click.prevent="goToProg">
@@ -98,24 +98,27 @@ export default {
       if (this.youtubeLink === "" || this.nameLink === "") {
         alert("Il faut remplir les 2 champs");
       } else {
-        let regex = /(?<=v=)(.*)(?=&)/;
+        let regex = /[-_\w]{11}/;
         let found = this.youtubeLink.match(regex);
 
-        this.youtubeLink = found[0];
+        if (found !== null) {
+            // Si le lien ajouté à bien l'id youtube
+            this.youtubeLink = found[0];
 
-        console.log(this.youtubeLink);
+            this.progArr.push({
+            artist: this.nameLink,
+            id: this.youtubeLink,
+          });
 
-        this.progArr.push({
-          artist: this.nameLink,
-          id: this.youtubeLink,
-        });
+          this.nameLink = "";
+          this.youtubeLink = "";
 
-        this.nameLink = "";
-        this.youtubeLink = "";
+          document.getElementById("artist").focus();
+          this.countProg = this.countProg += 1;
 
-        document.getElementById("artist").focus();
-
-        this.countProg = this.countProg += 1;
+        } else {
+          alert("Lien non valable...")
+        }
 
         if (this.countProg > 1) {
           document.querySelector(".steps-indicator span").style.width = "100%";

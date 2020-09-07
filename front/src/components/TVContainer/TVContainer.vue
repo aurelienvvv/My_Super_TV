@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <div class="video-number">
+    <div class="video-number">Track 
       {{ currentVideoIndex + 1 }} /
       {{ videoList.length }}
       </div>
