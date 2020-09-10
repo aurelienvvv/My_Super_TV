@@ -1,5 +1,6 @@
 <template>
-  <div class="wrapper-tv">
+  <div class="wrapper-tv" :class='color'>
+    <div class="filter-img"></div>
     <div class="btn-info-channel" @click="toggleDescr"></div>
     <div class="infos-channel">
       <div class="title">{{ titleTV }}</div>
@@ -68,7 +69,8 @@ export default {
       pseudo: "",
       description: "",
       linkLoaded: false,
-      player: ""
+      player: "",
+      color: ""
     };
   },
 
@@ -177,13 +179,14 @@ export default {
     },
 
     callAPI: function () {
-      axios.get("http://localhost:3000/api/").then((response) => {
+      axios.get("/api/").then((response) => {
         
         // ajoute le titre
         let getData = response.data[this.idChannel - 1];
         this.titleTV = getData.name;
         this.pseudo = getData.pseudo;
         this.description = getData.description;
+        this.color = getData.color;
 
         console.log(response);
 
@@ -200,6 +203,7 @@ export default {
         setTimeout(()=> {
           this.player = this.$refs.plyr.player;
           this.player.play();
+          this.$refs.plyr.player.volume = 1
         }, 2000);
       });
     },

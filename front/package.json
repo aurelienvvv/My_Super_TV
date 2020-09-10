@@ -10,9 +10,11 @@
   "dependencies": {
     "axios": "^0.19.2",
     "core-js": "^3.6.5",
+    "konami": "^1.6.2",
     "nuxt": "^2.14.4",
     "plyr": "^3.6.2",
     "vue": "^2.6.11",
+    "vue-konami-code": "^1.0.0",
     "vue-marquee-text-component": "^1.1.1",
     "vue-plyr": "^6.0.4",
     "vue-router": "^3.2.0",

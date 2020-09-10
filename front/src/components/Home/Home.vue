@@ -15,11 +15,11 @@
     </div>
 
     <div class="info-container">
-      <p class="intro">Créé ta TV personnalisée avec ton contenu youtube favoris !</p>
+      <p class="intro">Créé des playlists avec tes vidéos youtube favorites !</p>
 
       <div class="btns-wrapper">
         <router-link class="btn" to="/creer-tv">
-          <span>Commencer</span>
+          <span>Créer ma playlist</span>
         </router-link>
       </div>
     </div>

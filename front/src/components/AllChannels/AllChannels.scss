@@ -50,38 +50,32 @@
     height: 150px;
     margin: 15px;
 
-    &:nth-child(odd){
-      a {
-        border-color: $pink;
+    .-theme-orange{
+      border-color: $pink;
 
-        div {
-          background: -webkit-linear-gradient($orange, $pink);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          }
-      }
+      div {
+        background: -webkit-linear-gradient($orange, $pink);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        }
     }
 
-    &:nth-child(even){
-      a {
+    .-theme-blue {
         border-color: $green;
         div {
           background: -webkit-linear-gradient($blue, $green);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
-      }
     }
 
-    &:nth-of-type(3n + 2) {
-      a {
-        border-color: $lightpurlple;
-        div {
-          background: -webkit-linear-gradient($purple, $lightpurlple);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          }
-      }
+    .-theme-purple {
+      border-color: $lightpurlple;
+      div {
+        background: -webkit-linear-gradient($purple, $lightpurlple);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        }
     }
 
 

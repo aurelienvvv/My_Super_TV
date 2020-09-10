@@ -8,13 +8,13 @@
       <div class="screen screen-one -visible">
         <div class="flex-wrapper">
           <div class="input-wrapper">
-            <label for="channel-name">Donne un nom à ta chaîne</label>
-            <input id="channel-name" placeholder="Jean-Jean TV !" required v-model="tvName" />
+            <label for="channel-name">Donne un nom à ta playlist</label>
+            <input id="channel-name" placeholder="Clips mélancoliques" required v-model="tvName" />
           </div>
 
           <div class="input-wrapper">
             <label for="pseudo-name">Ton blaze</label>
-            <input id="pseudo-name" placeholder="Jean-Du-58" required v-model="pseudoName" />
+            <input id="pseudo-name" placeholder="Mélancolique-@nonyme" required v-model="pseudoName" />
           </div>
         </div>
         <button type="submit" @click.prevent="stepOneOk" class="btn -step">
@@ -25,17 +25,40 @@
 
     <form class="question-descr">
       <div class="screen screen-two">
-        <h1 class="title-step">Fais une description de ta chaîne</h1>
         <div class="input-wrapper">
-          <label for="channel-descr"></label>
+          <label for="channel-descr">Quelques mots sur ta playlist</label>
           <input
             id="channel-descr"
-            placeholder="Compil' de mes vidéos favorites"
+            placeholder="La vie est triste"
             required
             v-model="descrChannel"
           />
         </div>
-        <button type="submit" @click.prevent="stepDescOk" class="btn -step">
+        <div class="input-wrapper">
+          <label for="channel-descr">Choisi les couleurs de ta chaîne</label>
+
+          <div class="flex-wrapper">
+            <div class="radio-wrapper">
+              <label for="orange"></label>
+              <input type="radio" id="orange" name="color" v-model="colorsChoice" value="-theme-orange">
+              <div class="check -orange"><div class="inside"></div></div>
+            </div>
+
+            <div class="radio-wrapper">
+              <label for="blue"></label>
+              <input type="radio" id="blue" name="color" v-model="colorsChoice" value="-theme-blue">
+              <div class="check -blue"><div class="inside"></div></div>
+            </div>
+
+            <div class="radio-wrapper">
+              <label for="purple"></label>
+              <input type="radio" id="purple" name="color" v-model="colorsChoice" value="-theme-purple">
+              <div class="check -purple"><div class="inside"></div></div>
+            </div>
+          </div>
+        </div>
+        
+        <button type="submit" @click.prevent="stepDescOk" class="btn -step -mt-20">
           <span>Valider</span>
         </button>
       </div>
@@ -90,6 +113,7 @@ export default {
       stepName: "Étape 1",
       descrChannel: "",
       pseudoName: "",
+      colorsChoice: ""
     };
   },
 
@@ -138,18 +162,18 @@ export default {
     },
 
     stepDescOk: function () {
-      if (this.descrChannel !== "") {
+      if (this.descrChannel !== "" && this.colorsChoice !== "") {
         document.querySelector(".steps-indicator span").style.width = "66%";
         this.stepName = "Étape 3";
         document.querySelector(".screen-two").classList.remove("-visible");
         document.querySelector(".screen-three").classList.add("-visible");
       } else {
-        alert("vous devez une description");
+        alert("Ajoutez une description et une couleur");
       }
     },
 
     callAPI: function () {
-      axios.get("http://localhost:3000/api/").then((response) => {
+      axios.get("/api/").then((response) => {
         this.$router.push(`/tv/${response.data.length}`);
         window.location.reload();
       });
@@ -157,11 +181,12 @@ export default {
 
     postAPI: function () {
       axios
-        .post("http://localhost:3000/api/", {
+        .post("/api/", {
           name: this.tvName,
           list: this.progArr,
           pseudo: this.pseudoName,
           description: this.descrChannel,
+          color: this.colorsChoice,
         })
         .then(() => {
           this.callAPI();
