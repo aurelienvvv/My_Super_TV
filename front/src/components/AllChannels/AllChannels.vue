@@ -24,11 +24,12 @@ export default {
     return {
       listChannel: [],
       index: 0,
+      serverLink: ""
     };
   },
   methods: {
     callAPI: function () {
-      axios.get("/api/").then((response) => {
+      axios.get(`${this.serverLink}/api/`).then((response) => {
         for (let r of response.data) {
           this.listChannel.push(r);
           r.link = `/tv/${(this.index += 1)}`;
@@ -40,7 +41,13 @@ export default {
   },
 
   mounted() {
+    if (process.env.NODE_ENV === "development") {
+      console.log('API DEV');
+      this.serverLink = 'http://localhost:3000';
+    }
+
     this.callAPI();
+
   },
 };
 </script>

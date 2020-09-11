@@ -24,7 +24,7 @@ export default {
   name: "App",
   components: {
     Header,
-    VuePlyr
+    VuePlyr,
   },
 
   data(){

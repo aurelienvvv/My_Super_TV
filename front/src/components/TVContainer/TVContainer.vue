@@ -70,7 +70,8 @@ export default {
       description: "",
       linkLoaded: false,
       player: "",
-      color: ""
+      color: "",
+      serverLink: ""
     };
   },
 
@@ -179,7 +180,7 @@ export default {
     },
 
     callAPI: function () {
-      axios.get("/api/").then((response) => {
+      axios.get(`${this.serverLink}/api/`).then((response) => {
         
         // ajoute le titre
         let getData = response.data[this.idChannel - 1];
@@ -216,7 +217,11 @@ export default {
   computed: {
   },
 
-  created() {   
+  created() {
+    if (process.env.NODE_ENV === "development") {
+      this.serverLink = 'http://localhost:3000';
+    }
+
     // appel l'API
     this.callAPI();
   },

@@ -113,7 +113,8 @@ export default {
       stepName: "Étape 1",
       descrChannel: "",
       pseudoName: "",
-      colorsChoice: ""
+      colorsChoice: "",
+      serverLink: ""
     };
   },
 
@@ -192,8 +193,14 @@ export default {
           this.callAPI();
         });
     },
+
+    mounted(){
+      if (process.env.NODE_ENV === "development") {
+        this.serverLink = 'http://localhost:3000';
+      }
+    }
   },
-};
+}
 </script>
 
 <style lang='scss'>
