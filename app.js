@@ -57,6 +57,6 @@ console.log(`Mixing it up on port ${PORT}`)
 app.use(serveStatic(path.join(__dirname, 'front/dist')))
 
 // Anything that doesn't match the above, send back index.html
-// app.get('*', (req, res) => {
-// res.sendFile(path.join(__dirname + '/front/dist/index.html'))
-// })
+app.get('*', (req, res) => {
+res.sendFile(path.join(__dirname + '/front/dist/index.html'))
+})
