@@ -42,7 +42,6 @@ export default {
 
   mounted() {
     if (process.env.NODE_ENV === "development") {
-      console.log('API DEV');
       this.serverLink = 'http://localhost:3000';
     }
 

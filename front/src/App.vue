@@ -41,6 +41,8 @@ export default {
   },
 
   mounted(){
+    console.log(process.env.NODE_ENV);
+
     new Konami(()=> {
       alert('Konami ???')
       document.querySelector('.video-app').style.display = 'block';

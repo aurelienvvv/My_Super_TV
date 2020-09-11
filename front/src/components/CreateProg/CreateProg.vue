@@ -174,7 +174,7 @@ export default {
     },
 
     callAPI: function () {
-      axios.get("/api/").then((response) => {
+      axios.get(`${this.serverLink}/api/`).then((response) => {
         this.$router.push(`/tv/${response.data.length}`);
         window.location.reload();
       });
@@ -182,7 +182,7 @@ export default {
 
     postAPI: function () {
       axios
-        .post("/api/", {
+        .post(`${this.serverLink}/api/`, {
           name: this.tvName,
           list: this.progArr,
           pseudo: this.pseudoName,
@@ -193,13 +193,13 @@ export default {
           this.callAPI();
         });
     },
-
-    mounted(){
-      if (process.env.NODE_ENV === "development") {
-        this.serverLink = 'http://localhost:3000';
-      }
-    }
   },
+  
+  mounted(){
+    if (process.env.NODE_ENV === "development") {
+      this.serverLink = 'http://localhost:3000';
+    }
+  }
 }
 </script>
 
